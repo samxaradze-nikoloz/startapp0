@@ -120,12 +120,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
-crispy_forms_template_pack = 'bootstrap4'
-login_redirect_url = 'blog-home'
-LOGOUT_REDIRECT_URL = 'blog-home'
-LOGIN_URL = 'login'
 
+# Media files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# Crispy forms
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+CRISPY_FORMS_TEMPLATE_PACK = 'bootstrap4'
+
+
+# Login / Logout redirects
+LOGIN_REDIRECT_URL = 'blog-home'   
+LOGOUT_REDIRECT_URL = 'blog-home'  
+LOGIN_URL = 'login'                
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] 

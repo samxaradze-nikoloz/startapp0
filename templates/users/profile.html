@@ -1,24 +1,81 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
+
 {% block content %}
-    <div class="content-section">
-      <div class="media">
-        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
-        <div class="media-body">
-          <h2 class="account-heading">{{ user.username }}</h2>
-          <p class="text-secondary">{{ user.email }}</p>
+<link rel="stylesheet" href="{% static 'users/main.css' %}?v={% now 'U' %}">
+
+<div class="profile-page-container">
+    <header class="profile-header-grid">
+        <div class="image-column">
+            <img src="{{ user.profile.image.url }}" class="profile-pic" id="imagePreview">
         </div>
-      </div>
-      <form method="POST" enctype="multipart/form-data">
-          {% csrf_token %}
-          <fieldset class="form-group">
-              <legend class="border-bottom mb-4">Profile Info</legend>
-              {{ u_form|crispy }}
-              {{ p_form|crispy }}
-          </fieldset>
-          <div class="form-group">
-              <button class="btn btn-outline-info" type="submit">Update</button>
-          </div>
-      </form>
+
+        <div class="info-column">
+            <div class="header-actions mb-4">
+                <h2 class="username-display mb-0">{{ user.username }}</h2>
+                
+                <div class="button-group ms-4">
+                    <button class="btn-ig-secondary" onclick="toggleEditForm()">Edit Profile</button>
+                    <a href="{% url 'user-posts' user.username %}" class="btn-ig-secondary">View My Posts</a>
+                </div>
+                
+                <span class="badge-verified ms-3">Verified</span>
+            </div>
+
+            <div class="stats-row mb-4">
+                <div class="stat-item">
+                    <span class="stat-value">{{ user.post_set.count }}</span> 
+                    <span class="stat-label">posts</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">Active</span> 
+                    <span class="stat-label">status</span>
+                </div>
+            </div>
+
+            <div class="user-bio">
+                <p class="fw-bold mb-0">{{ user.username }}</p>
+                <p class="text-secondary small">{{ user.email }}</p>
+            </div>
+        </div>
+    </header>
+
+    <div id="editProfileSection" style="display: none;" class="settings-wrapper fade-in">
+        <div class="settings-card p-4 border rounded bg-white shadow-sm">
+            <h5 class="fw-bold mb-4">Account Settings</h5>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="text-center mb-4 border-bottom pb-3">
+                    <label for="id_image" class="custom-file-upload">
+                         Change Profile Photo
+                    </label>
+                    <div style="display: none;">{{ p_form.image }}</div>
+                </div>
+
+                {{ u_form|crispy }}
+                <button class="btn-modern-save" type="submit">Save Changes</button>
+            </form>
+
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn-modern-logout mt-2">Log Out</button>
+            </form>
+        </div>
     </div>
+</div>
+
+<script>
+    function toggleEditForm() {
+        var x = document.getElementById("editProfileSection");
+        x.style.display = (x.style.display === "none") ? "block" : "none";
+    }
+
+    document.getElementById('id_image').onchange = function (evt) {
+        const [file] = this.files;
+        if (file) {
+            document.getElementById('imagePreview').src = URL.createObjectURL(file);
+        }
+    }
+</script>
 {% endblock content %}

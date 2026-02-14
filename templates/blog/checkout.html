@@ -1,0 +1,29 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">Complete Your Order</h2>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Select Payment Method</label>
+                            <select name="payment_method" class="form-select form-select-lg" required>
+                                <option value="" selected disabled>Choose...</option>
+                                <option value="credit_card">Credit Card</option>
+                                <option value="paypal">PayPal</option>
+                                <option value="stripe">Stripe</option>
+                            </select>
+                        </div>
+                        <div class="border-top pt-3">
+                            <button type="submit" class="btn btn-primary btn-lg w-100">Place Order</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

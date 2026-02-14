@@ -1,0 +1,51 @@
+{% extends "blog/base.html" %}
+{% block content %}
+  <h2 class="mb-4">My Purchases</h2>
+  
+  {% if orders %}
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Item</th>
+            <th>Seller</th>
+            <th>Amount</th>
+            <th>Payment Method</th>
+            <th>Status</th>
+            <th>Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for order in orders %}
+            <tr>
+              <td>#{{ order.id }}</td>
+              <td>{{ order.post.title }}</td>
+              <td>{{ order.post.author }}</td>
+              <td>${{ order.amount }}</td>
+              <td>{{ order.get_payment_method_display }}</td>
+              <td>
+                {% if order.status == 'completed' %}
+                  <span class="badge badge-success">Completed</span>
+                {% elif order.status == 'pending' %}
+                  <span class="badge badge-warning">Pending</span>
+                {% else %}
+                  <span class="badge badge-danger">Cancelled</span>
+                {% endif %}
+              </td>
+              <td>{{ order.created_at|date:"F d, Y" }}</td>
+              <td>
+                <a href="{% url 'post-detail' order.post.id %}" class="btn btn-sm btn-outline-info">View Item</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <div class="alert alert-info">
+      <p>You haven't made any purchases yet. <a href="{% url 'blog-home' %}">Start shopping!</a></p>
+    </div>
+  {% endif %}
+{% endblock content %}

@@ -1,84 +1,173 @@
-body {
-  background: #fafafa;
-  color: #333333;
-  margin-top: 5rem;
+.site-header .navbar-brand {
+    font-size: 1rem;
+    font-weight: bold;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: #444444;
+.site-header .nav-item {
+    font-size: 0.95rem;
+    padding: 0.25rem 0.5rem !important;
 }
 
-ul {
-  margin: 0;
+.nav-profile {
+    display: flex;
+    align-items: center;
 }
 
-.bg-steel {
-  background-color: #5f788a;
+.nav-profile-img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    margin-right: 5px;
 }
 
-.site-header .navbar-nav .nav-link {
-  color: #cbd5db;
+.nav-username {
+    font-size: 0.9rem;
 }
 
-.site-header .navbar-nav .nav-link:hover {
-  color: #ffffff;
+/* Add this if main content is getting hidden behind navbar */
+main {
+    margin-top: 60px;
 }
 
-.site-header .navbar-nav .nav-link.active {
-  font-weight: 500;
+
+
+/* CART
+/* Marketplace Styling */
+
+/* Make the Add to Cart button pop */
+.btn-primary {
+    background-color: #f0c14b; /* "Amazon-style" Yellow */
+    border-color: #a88734 #9c7e31 #846a29;
+    color: #111;
 }
 
-.content-section {
-  background: #ffffff;
-  padding: 10px 20px;
-  border: 1px solid #dddddd;
-  border-radius: 3px;
-  margin-bottom: 20px;
+.btn-primary:hover {
+    background-color: #e9b330;
+    color: #000;
 }
 
-.article-title {
-  color: #444444;
+/* Cart Item Cards */
+.card {
+    transition: transform 0.2s ease-in-out;
+    border: 1px solid #ddd;
 }
 
-a.article-title:hover {
-  color: #428bca;
-  text-decoration: none;
+.card:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-.article-content {
-  white-space: pre-line;
+/* Purchase section styling */
+.purchase-section h3 {
+    font-weight: 700;
+    color: #B12704; /* Classic price red */
 }
 
-.article-img {
-  height: 65px;
-  width: 65px;
-  margin-right: 16px;
+/* Small cart badge (if you add one to your navbar later) */
+/* Marketplace Styling */
+
+/* Make the Add to Cart button pop */
+.btn-primary {
+    background-color: #f0c14b; /* "Amazon-style" Yellow */
+    border-color: #a88734 #9c7e31 #846a29;
+    color: #111;
 }
 
-.article-metadata {
-  padding-bottom: 1px;
-  margin-bottom: 4px;
-  border-bottom: 1px solid #e3e3e3
+.btn-primary:hover {
+    background-color: #e9b330;
+    color: #000;
 }
 
-.article-metadata a:hover {
-  color: #333;
-  text-decoration: none;
+/* Cart Item Cards */
+.card {
+    transition: transform 0.2s ease-in-out;
+    border: 1px solid #ddd;
 }
 
-.article-svg {
-  width: 25px;
-  height: 25px;
-  vertical-align: middle;
+.card:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-.account-img {
-  height: 125px;
-  width: 125px;
-  margin-right: 20px;
-  margin-bottom: 16px;
+/* Purchase section styling */
+.purchase-section h3 {
+    font-weight: 700;
+    color: #B12704; /* Classic price red */
 }
 
-.account-heading {
-  font-size: 2.5rem;
+/* Small cart badge (if you add one to your navbar later) */
+.btn-primary {
+    background-color: #f0c14b; /* "Amazon-style" Yellow */
+    border-color: #a88734 #9c7e31 #846a29;
+    color: #111;
+}
+
+.btn-primary:hover {
+    background-color: #e9b330;
+    color: #000;
+}
+
+/* Cart Item Cards */
+.card {
+    transition: transform 0.2s ease-in-out;
+    border: 1px solid #ddd;
+}
+
+.card:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Purchase section styling */
+.purchase-section h3 {
+    font-weight: 700;
+    color: #B12704; /* Classic price red */
+}
+
+/* Small cart badge (if you add one to your navbar later) */
+.cart-badge {
+    position: relative;
+    top: -10px;
+    right: 5px;
+    padding: 2px 6px;
+    border-radius: 50%;
+    background: red;
+    color: white;
+    font-size: 0.7rem;
+}
+
+/* Marketplace Styles */
+
+.price-tag {
+    color: #2ecc71;
+    font-weight: bold;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+/* Amazon-style "Add to Cart" button */
+.btn-primary {
+    background-color: #f0c14b !important;
+    border-color: #a88734 !important;
+    color: #111 !important;
+    font-weight: 500;
+}
+
+.btn-primary:hover {
+    background-color: #e9b330 !important;
+    border-color: #9c7e31 !important;
+}
+
+/* "Buy Now" Green Button */
+.btn-success {
+    background-color: #ffa41c !important; /* Orange-tint for urgency */
+    border-color: #ff8f00 !important;
+    color: #fff !important;
+}
+
+.btn-success:hover {
+    background-color: #f59600 !important;
+}
+
+/* Layout spacing */
+.gap-2 {
+    display: flex;
+    gap: 10px;
 }

@@ -1,0 +1,61 @@
+/* Post Grid - 3 Columns Stretch */
+.post-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px; /* Responsive gap */
+    margin-top: 20px;
+}
+
+.grid-item {
+    position: relative;
+    aspect-ratio: 1 / 1; /* Keep it square */
+    background-color: #efefef;
+    overflow: hidden;
+}
+
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Fill the square without stretching */
+    transition: filter 0.3s ease;
+}
+
+/* Instagram Hover Effect */
+.grid-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    color: white;
+}
+
+.grid-item:hover .grid-overlay {
+    opacity: 1;
+}
+
+.overlay-content {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.no-image-placeholder {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fafafa;
+    color: #8e8e8e;
+    border: 1px solid #dbdbdb;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Pagination Styling */
+.pagination-container .btn {
+    border-radius: 4px;
+    margin: 0 2px;
+}

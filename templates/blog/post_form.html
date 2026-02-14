@@ -2,11 +2,19 @@
 {% load crispy_forms_tags %}
 {% block content %}
     <div class="content-section">
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Blog Post</legend>
                 {{ form|crispy }}
+                
+                <!-- Display current image if updating -->
+                {% if form.instance.pk and form.instance.image %}
+                    <div class="form-group">
+                        <label>Current Image:</label><br>
+                        <img src="{{ form.instance.image.url }}" alt="Current post image" style="max-width: 300px; height: auto; border-radius: 8px; margin: 10px 0;">
+                    </div>
+                {% endif %}
             </fieldset>
             <div class="form-group">
                 <button class="btn btn-outline-info" type="submit">Post</button>

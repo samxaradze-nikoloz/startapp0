@@ -1,0 +1,29 @@
+{% extends "blog/base.html" %}
+{% block content %}
+  <div class="content-section text-center">
+    <div style="background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+      <h2 style="color: #2ecc71; margin-bottom: 20px;">✓ Payment Successful!</h2>
+      
+      <div class="alert alert-success" role="alert">
+        <p><strong>Order Confirmation</strong></p>
+      </div>
+      
+      <div style="text-align: left; background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+        <p><strong>Order ID:</strong> #{{ order.id }}</p>
+        <p><strong>Item:</strong> {{ order.post.title }}</p>
+        <p><strong>Seller:</strong> {{ order.post.author }}</p>
+        <p><strong>Amount:</strong> <span style="color: #2ecc71; font-weight: bold;">{{ order.amount }}</span></p>
+        <p><strong>Payment Method:</strong> {{ payment_method }}</p>
+        <p><strong>Status:</strong> <span class="badge badge-info">{{ order.get_status_display }}</span></p>
+        <p><strong>Date:</strong> {{ order.created_at|date:"F d, Y H:i" }}</p>
+      </div>
+      
+      <p class="text-muted">A confirmation email has been sent to your registered email address.</p>
+      
+      <div style="margin-top: 30px;">
+        <a href="{% url 'blog-home' %}" class="btn btn-primary">Continue Shopping</a>
+        <a href="{% url 'my-purchases' %}" class="btn btn-info">View My Purchases</a>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

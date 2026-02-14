@@ -1,83 +1,67 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
-
-    {% if title %}
-        <title>Django Blog - {{ title }}</title>
-    {% else %}
-        <title>Django Blog</title>
-    {% endif %}
+    <title>Django Shop {% if title %}- {{ title }}{% endif %}</title>
 </head>
 <body>
     <header class="site-header">
-      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top shadow-sm">
         <div class="container">
-          <a class="navbar-brand mr-4" href="{% url 'blog-home' %}">Django Blog</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+          <a class="navbar-brand mr-4 fw-bold" href="{% url 'blog-home' %}">
+            DJANGO<span class="text-warning">SHOP</span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle">
+            <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
               <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
-              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
             </div>
-            <!-- Navbar Right Side -->
-            <div class="navbar-nav">
-              {% if user.is_authenticated %}
-                <a class="nav-item nav-link" href="{% url 'post-create' %}">New Post</a>
-                <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
-                <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
-              {% else %}
+            <div class="navbar-nav align-items-center">
+{% if user.is_authenticated %}
+  <a class="nav-item nav-link mr-3" href="{% url 'post-create' %}">
+    <span class="btn btn-outline-light btn-sm">+ New Post</span>
+  </a>
+
+  <a class="nav-item nav-link mr-3" href="{% url 'inbox' %}" title="Messages">
+    <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/>
+    </svg>
+  </a>
+
+  <a class="nav-item nav-link mr-3 position-relative" href="{% url 'cart-detail' %}">
+    <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/></svg>
+  </a>
+
+  <a class="nav-item nav-link" href="{% url 'my-purchases' %}">Orders</a>
+  <a class="nav-item nav-link fw-bold text-white" href="{% url 'profile' %}">{{ user.username }}</a>
+{% else %}
                 <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
-                <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                <a class="nav-item nav-link border border-light rounded px-2 ml-2" href="{% url 'register' %}">Register</a>
               {% endif %}
             </div>
           </div>
         </div>
       </nav>
     </header>
-    <main role="main" class="container">
+
+    <main role="main" class="container mt-5 pt-4">
       <div class="row">
         <div class="col-md-8">
-          {% if messages %}
-            {% for message in messages %}
-              <div class="alert alert-{{ message.tags }}">
-                {{ message }}
-              </div>
-            {% endfor %}
-          {% endif %}
+          {% if messages %}{% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+          {% endfor %}{% endif %}
           {% block content %}{% endblock %}
-        </div>
-        <div class="col-md-4">
-          <div class="content-section">
-            <h3>Our Sidebar</h3>
-            <p class='text-muted'>You can put any information here you'd like.
-              <ul class="list-group">
-                <li class="list-group-item list-group-item-light">Latest Posts</li>
-                <li class="list-group-item list-group-item-light">Announcements</li>
-                <li class="list-group-item list-group-item-light">Calendars</li>
-                <li class="list-group-item list-group-item-light">etc</li>
-              </ul>
-            </p>
-          </div>
         </div>
       </div>
     </main>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -9,12 +9,35 @@
               <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
             </div>
             <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+            
+            <!-- Display post image if it exists -->
+            {% if post.image %}
+              <div class="post-image-container mb-3">
+                <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid post-image" style="max-width: 100%; height: auto; border-radius: 8px;">
+              </div>
+            {% endif %}
+            
+            <!-- Display price -->
+            {% if post.price > 0 %}
+              <div class="price-badge mb-2">
+                <span style="color: #2ecc71; font-weight: bold; font-size: 18px;">${{ post.price }}</span>
+              </div>
+            {% endif %}
+            
             <p class="article-content">{{ post.content }}</p>
+            
+            <!-- Buy button only for other users -->
+            {% if post.author != user %}
+              <a class="btn btn-success" href="{% url 'post-detail' post.id %}">Buy Now</a>
+            {% else %}
+              <a class="btn btn-outline-info" href="{% url 'post-detail' post.id %}">View Details</a>
+            {% endif %}
           </div>
         </article>
     {% endfor %}
+    
+    <!-- Pagination code (keep existing pagination) -->
     {% if is_paginated %}
-
       {% if page_obj.has_previous %}
         <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
         <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
@@ -32,6 +55,5 @@
         <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
         <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
       {% endif %}
-
     {% endif %}
 {% endblock content %}

@@ -1,0 +1,29 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<div class="content-section shadow-sm p-4">
+    <h3 class="mb-4">Message Requests</h3>
+    <hr>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="media content-section border {% if not message.is_read %}border-primary{% endif %} p-3 mb-3">
+                <img class="rounded-circle mr-3" src="{{ message.sender.profile.image.url }}" style="width: 50px; height: 50px;">
+                <div class="media-body">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="mt-0 text-primary">{{ message.sender.username }}</h5>
+                        <small class="text-muted">{{ message.timestamp|date:"M d, Y" }}</small>
+                    </div>
+                    <p class="mb-1 text-secondary">Regarding: <strong>{{ message.post.title }}</strong></p>
+                    <p class="font-italic">"{{ message.content|truncatechars:100 }}"</p>
+                    
+                    <a href="{% url 'chat-view' message.post.id message.sender.id %}" class="btn btn-info btn-sm">Open Chat & Reply</a>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="text-center py-5">
+            <p class="text-muted">No message requests yet.</p>
+            <a href="{% url 'blog-home' %}" class="btn btn-outline-secondary">Explore Items</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
