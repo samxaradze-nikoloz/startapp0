@@ -1,135 +1,68 @@
 {% extends "blog/base.html" %}
 {% block content %}
-  <article class="media content-section">
-    <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
-    <div class="media-body">
-      <div class="article-metadata">
-        <a class="mr-2" href="{% url 'user-profile' object.author.username %}">{{ object.author }}</a>
-        <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+<article class="media content-section">
+  <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="mr-2" href="{% url 'user-profile' object.author.username %}">{{ object.author }}</a>
+      <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+      
+      {% if object.author == user %}
+        <div>
+          <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
+          <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+        </div>
+      {% endif %}
+    </div>
+    <h2 class="article-title">{{ object.title }}</h2>
+    
+    {% if object.image %}
+      <img src="{{ object.image.url }}" alt="{{ object.title }}" class="img-fluid mb-3" style="max-width: 100%; height: auto; border-radius: 8px;">
+    {% endif %}
+    
+    {% if object.price > 0 %}
+      <div class="price-section mb-3">
+        <h4 class="price-tag">
+          ${{ object.price }}
+        </h4>
         
-        {% if object.author == user %}
-          <div>
-            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
-            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
-          </div>
+        {% if object.author != user %}
+          {% if user.is_authenticated %}
+            <div class="d-flex flex-wrap gap-2 align-items-center">
+              <a href="{% url 'add-to-cart' object.id %}" class="btn btn-primary btn-lg mb-2">
+                Add to Cart
+              </a>
+              <button class="btn btn-success btn-lg mb-2" data-toggle="modal" data-target="#buyModal">
+                Buy Now
+              </button>
+
+              {% if object.author.profile.phone_number %}
+                <a href="tel:{{ object.author.profile.phone_number }}" class="btn btn-warning btn-lg mb-2">
+                   📞 Call Seller
+                </a>
+                
+                <a href="https://wa.me/{{ object.author.profile.phone_number|cut:'+'|cut:' '|cut:'-' }}" 
+                   target="_blank" 
+                   class="btn btn-outline-success btn-lg mb-2">
+                   <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+              {% endif %}
+
+              <button class="btn btn-outline-info btn-lg mb-2" data-toggle="modal" data-target="#negotiateModal">
+                Negotiate
+              </button>
+            </div>
+          {% else %}
+            <a href="{% url 'login' %}" class="btn btn-success btn-lg">Login to Buy</a>
+          {% endif %}
+        {% else %}
+          <p class="text-muted"><em>This is your listing</em></p>
         {% endif %}
       </div>
-      <h2 class="article-title">{{ object.title }}</h2>
-      
-      {% if object.image %}
-        <img src="{{ object.image.url }}" alt="{{ object.title }}" class="img-fluid mb-3" style="max-width: 100%; height: auto; border-radius: 8px;">
-      {% endif %}
-      
-      {% if object.price > 0 %}
-        <div class="price-section mb-3">
-          <h4 class="price-tag" style="color: #2ecc71; font-weight: bold; font-size: 24px;">
-            ${{ object.price }}
-          </h4>
-          
-          {% if object.author != user %}
-            {% if user.is_authenticated %}
-              <div class="d-flex flex-wrap gap-2">
-                <a href="{% url 'add-to-cart' object.id %}" class="btn btn-primary btn-lg mr-2 mb-2">
-                  Add to Cart
-                </a>
-                <button class="btn btn-success btn-lg mr-2 mb-2" 
-                        data-toggle="modal" data-target="#buyModal">
-                  Buy Now
-                </button>
-                <button class="btn btn-outline-info btn-lg mb-2" 
-                        data-toggle="modal" data-target="#negotiateModal">
-                  Negotiate
-                </button>
-              </div>
-            {% else %}
-              <a href="{% url 'login' %}" class="btn btn-success btn-lg">Login to Buy</a>
-            {% endif %}
-          {% else %}
-            <p class="text-muted"><em>This is your listing</em></p>
-          {% endif %}
-        </div>
-      {% endif %}
-      
-      <p class="article-content">{{ object.content }}</p>
-    </div>
-  </article>
-
-  <hr>
-
-  <div class="content-section">
-      <h4>Questions & Answers</h4>
-      {% if user.is_authenticated %}
-          <form method="POST" action="{% url 'add-comment' object.id %}" class="mb-4">
-              {% csrf_token %}
-              <div class="form-group">
-                  <textarea name="content" class="form-control" rows="2" placeholder="Ask the seller a question..." required></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary btn-sm">Post Question</button>
-          </form>
-      {% endif %}
-
-      {% for comment in comments %}
-          <div class="media mb-3 pb-3 border-bottom">
-              <img class="rounded-circle mr-3" src="{{ comment.author.profile.image.url }}" style="width: 40px; height: 40px;">
-              <div class="media-body">
-                  <p class="mb-0"><strong>{{ comment.author.username }}</strong> <small class="text-muted ml-2">{{ comment.date_posted|date:"M d, Y" }}</small></p>
-                  <p class="text-dark mt-1">{{ comment.content }}</p>
-              </div>
-          </div>
-      {% empty %}
-          <p class="text-muted small">No questions yet. Be the first to ask!</p>
-      {% endfor %}
+    {% endif %}
+    
+    <p class="article-content">{{ object.content }}</p>
   </div>
+</article>
 
-  {% if object.author != user and user.is_authenticated %}
-    <div class="modal fade" id="buyModal" tabindex="-1">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Confirm Purchase</h5>
-            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-          </div>
-          <form method="POST" action="{% url 'buy-post' object.id %}">
-            {% csrf_token %}
-            <div class="modal-body">
-              <p><strong>Item:</strong> {{ object.title }}</p>
-              <p><strong>Price:</strong> <span class="text-success">${{ object.price }}</span></p>
-              <hr>
-              <h6>Select Payment Method:</h6>
-              <select name="payment_method" class="form-control" required>
-                  <option value="credit_card">Credit Card</option>
-                  <option value="paypal">PayPal</option>
-              </select>
-            </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-success">Confirm & Pay</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal fade" id="negotiateModal" tabindex="-1">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Message Seller</h5>
-            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-          </div>
-          <form method="POST" action="{% url 'send-negotiation' object.author.id %}">
-            {% csrf_token %}
-            <input type="hidden" name="post_id" value="{{ object.id }}">
-            <div class="modal-body">
-              <p class="small text-muted">Negotiate price or ask private details about <strong>{{ object.title }}</strong>.</p>
-              <textarea name="content" class="form-control" rows="4" placeholder="Hi! I was wondering if you'd accept..." required></textarea>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-info text-white">Send Message</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  {% endif %}
 {% endblock content %}

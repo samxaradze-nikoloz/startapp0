@@ -8,7 +8,7 @@
                 <legend class="border-bottom mb-4">Blog Post</legend>
                 {{ form|crispy }}
                 
-                <!-- Display current image if updating -->
+                
                 {% if form.instance.pk and form.instance.image %}
                     <div class="form-group">
                         <label>Current Image:</label><br>

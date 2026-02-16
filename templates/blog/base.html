@@ -4,45 +4,72 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="icon" type="image/png" href="{% static 'blog/logo.png' %}">
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
-    <title>Django Shop {% if title %}- {{ title }}{% endif %}</title>
+    <style>
+        .nav-link svg { transition: transform 0.2s ease; }
+        .nav-link:hover svg { transform: scale(1.1); color: #ffc107; }
+        .bg-steel { background-color: #5f788a; }
+        
+        .navbar-brand img {
+            border-radius: 4px;
+            margin-right: 8px;
+        }
+    </style>
+    <title>Resselix{% if title %}- {{ title }}{% endif %}</title>
 </head>
 <body>
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top shadow-sm">
         <div class="container">
-          <a class="navbar-brand mr-4 fw-bold" href="{% url 'blog-home' %}">
-            DJANGO<span class="text-warning">SHOP</span>
+          <a class="navbar-brand mr-4 fw-bold d-flex align-items-center" href="{% url 'blog-home' %}">
+            <img src="{% static 'blog/logo.png' %}" width="30" height="30" alt="R">
+            Ressell<span class="text-warning">IX</span>
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle">
             <span class="navbar-toggler-icon"></span>
           </button>
+          
           <div class="collapse navbar-collapse" id="navbarToggle">
-            <div class="navbar-nav mr-auto">
+            <div class="navbar-nav mr-auto align-items-center">
               <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
+              <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
+              
+              <form class="form-inline ml-lg-4" action="{% url 'blog-home' %}" method="GET">
+                <div class="input-group input-group-sm">
+                    <input name="q" class="form-control" type="text" placeholder="Search items..." value="{{ request.GET.q }}">
+                    <div class="input-group-append">
+                        <button class="btn btn-warning" type="submit">Search</button>
+                    </div>
+                </div>
+              </form>
             </div>
+
             <div class="navbar-nav align-items-center">
-{% if user.is_authenticated %}
-  <a class="nav-item nav-link mr-3" href="{% url 'post-create' %}">
-    <span class="btn btn-outline-light btn-sm">+ New Post</span>
-  </a>
-
-  <a class="nav-item nav-link mr-3" href="{% url 'inbox' %}" title="Messages">
-    <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-      <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/>
-    </svg>
-  </a>
-
-  <a class="nav-item nav-link mr-3 position-relative" href="{% url 'cart-detail' %}">
-    <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/></svg>
-  </a>
-
-  <a class="nav-item nav-link" href="{% url 'my-purchases' %}">Orders</a>
-  <a class="nav-item nav-link fw-bold text-white" href="{% url 'profile' %}">{{ user.username }}</a>
-{% else %}
+              {% if user.is_authenticated %}
+                <a class="nav-item nav-link mr-3" href="{% url 'post-create' %}">
+                  <span class="btn btn-outline-light btn-sm">+ New Post</span>
+                </a>
+                <a class="nav-item nav-link mr-3" href="{% url 'inbox' %}" title="Messages">
+                  <svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/>
+                  </svg>
+                </a>
+                <a class="nav-item nav-link mr-3 position-relative" href="{% url 'cart-detail' %}" title="Cart">
+                  <svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                  </svg>
+                </a>
+                <a class="nav-item nav-link mr-2" href="{% url 'my-purchases' %}">Orders</a>
+                <a class="nav-item nav-link font-weight-bold text-white border-left pl-3" href="{% url 'profile' %}">
+                    {{ user.username }}
+                </a>
+              {% else %}
                 <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
-                <a class="nav-item nav-link border border-light rounded px-2 ml-2" href="{% url 'register' %}">Register</a>
+                <a class="nav-item nav-link border border-light rounded px-3 ml-2" href="{% url 'register' %}">Register</a>
               {% endif %}
             </div>
           </div>
@@ -50,18 +77,26 @@
       </nav>
     </header>
 
-    <main role="main" class="container mt-5 pt-4">
-      <div class="row">
-        <div class="col-md-8">
-          {% if messages %}{% for message in messages %}
-            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-          {% endfor %}{% endif %}
+    <main role="main" class="container mt-5 pt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            {% endfor %}
+          {% endif %}
           {% block content %}{% endblock %}
         </div>
       </div>
     </main>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>

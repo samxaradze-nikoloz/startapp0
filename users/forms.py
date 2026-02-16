@@ -18,9 +18,15 @@ class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email']
-
-
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['image']
+        fields = ['image', 'phone_number']
+        widgets = {
+            
+            'phone_number': forms.TextInput(attrs={
+                'class': 'form-control', 
+                'id': 'id_phone_number',
+                'placeholder': 'Enter mobile number'
+            }),
+        }

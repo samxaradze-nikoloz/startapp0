@@ -1,173 +1,323 @@
+/* ===============================
+   1. GLOBAL DARK LUXURY THEME
+================================= */
+
+body {
+    background-color: #0b0f19;
+    color: #e6f1ff;
+    background-attachment: fixed;
+}
+
+main {
+    margin-top: 110px;
+}
+
+/* Remove accidental white Bootstrap backgrounds */
+.card,
+.bg-light,
+.container,
+.bg-white {
+    background-color: transparent !important;
+}
+
+
+/* ===============================
+   2. NAVBAR
+================================= */
+
+.site-header .navbar {
+    padding-top: 0.8rem !important;
+    padding-bottom: 0.8rem !important;
+    background: #111827 !important;
+    border-bottom: 1px solid rgba(0, 229, 168, 0.2);
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+}
+
 .site-header .navbar-brand {
-    font-size: 1rem;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #00e5a8 !important;
+    letter-spacing: -1px;
+}
+
+.nav-profile-img {
+    height: 35px !important;
+    width: 35px !important;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #00e5a8;
+}
+
+
+/* ===============================
+   3. MARKETPLACE CARDS
+================================= */
+
+.content-section {
+    background: #1f2937;
+    padding: 25px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+    border-left: 6px solid #00e5a8;
+    color: #e6f1ff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.content-section:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+}
+
+.article-img {
+    height: 50px !important;
+    width: 50px !important;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+    border: 2px solid #111827;
+}
+
+
+/* ===============================
+   4. PRICING
+================================= */
+
+.price-tag {
+    color: #00e5a8;
+    font-weight: 800;
+    font-size: 30px;
+}
+
+
+/* ===============================
+   5. BUTTON SYSTEM
+================================= */
+
+/* BUY BUTTON */
+.btn-success {
+    background-color: #ff7a00 !important;
+    border: none !important;
+    border-radius: 50px !important;
+    padding: 10px 30px !important;
+    font-weight: 700;
+    color: #fff !important;
+    box-shadow: 0 6px 20px rgba(255, 122, 0, 0.4);
+}
+
+.btn-success:hover {
+    background-color: #ff8f1f !important;
+}
+
+/* Secondary buttons */
+.btn-warning,
+.btn-primary {
+    background-color: #00e5a8 !important;
+    border: none !important;
+    border-radius: 50px !important;
+    font-weight: 600;
+    color: #0b0f19 !important;
+}
+
+/* Remove white Bootstrap buttons */
+.btn-light {
+    background-color: #1f2937 !important;
+    color: #e6f1ff !important;
+    border: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+
+/* ===============================
+   6. DARK CHAT SYSTEM
+================================= */
+
+.chat-container {
+    background-color: #111827 !important;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+}
+
+/* Kill white Bootstrap backgrounds inside chat */
+.chat-container .card,
+.chat-container .bg-light,
+.chat-container .container,
+.chat-container .bg-white {
+    background-color: #111827 !important;
+    color: #e6f1ff !important;
+}
+
+/* Chat bubbles */
+.message-bubble {
+    max-width: 75%;
+    padding: 12px 18px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+/* Sent */
+.message-sent {
+    align-self: flex-end;
+    background: linear-gradient(135deg, #00e5a8 0%, #00b386 100%) !important;
+    color: #0b0f19 !important;
+    border-bottom-right-radius: 6px;
+    box-shadow: 0 4px 15px rgba(0,229,168,0.3);
+}
+
+/* Received */
+.message-received {
+    align-self: flex-start;
+    background-color: #1f2937 !important;
+    color: #e6f1ff !important;
+    border: 1px solid rgba(255,255,255,0.05);
+    border-bottom-left-radius: 6px;
+}
+
+/* Chat inputs */
+.chat-container input,
+.chat-container textarea,
+.chat-container .form-control {
+    background-color: #0b0f19 !important;
+    border: 1px solid rgba(0,229,168,0.2) !important;
+    color: #e6f1ff !important;
+    border-radius: 12px;
+}
+
+.chat-container input:focus,
+.chat-container textarea:focus {
+    border-color: #00e5a8 !important;
+    box-shadow: 0 0 0 3px rgba(0,229,168,0.25) !important;
+}
+
+/* Chat buttons */
+.chat-container .btn {
+    background-color: #00e5a8 !important;
+    color: #0b0f19 !important;
+    border: none !important;
+}
+
+
+/* ===============================
+   7. PAGINATION
+================================= */
+
+.btn-outline-info {
+    border-color: #00e5a8 !important;
+    color: #00e5a8 !important;
+    border-radius: 50px !important;
+    margin: 0 3px;
+}
+
+.btn-info {
+    background-color: #00e5a8 !important;
+    border-color: #00e5a8 !important;
+    color: #0b0f19 !important;
+    border-radius: 50px !important;
     font-weight: bold;
 }
 
-.site-header .nav-item {
-    font-size: 0.95rem;
-    padding: 0.25rem 0.5rem !important;
+
+
+
+/* ===============================
+   CHAT INPUT – PREMIUM STYLE
+================================= */
+
+.chat-container form {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
 }
 
-.nav-profile {
+/* Input field */
+.chat-container input[type="text"],
+.chat-container textarea,
+.chat-container .form-control {
+    background-color: #111827 !important;
+    color: #e6f1ff !important;
+    border: 1px solid rgba(0,229,168,0.25) !important;
+    border-radius: 50px !important;
+    padding: 12px 18px !important;
+    transition: all 0.3s ease;
+}
+
+/* Placeholder color */
+.chat-container input::placeholder,
+.chat-container textarea::placeholder {
+    color: #6b7280 !important;
+}
+
+/* Focus glow */
+.chat-container input:focus,
+.chat-container textarea:focus {
+    outline: none !important;
+    border-color: #00e5a8 !important;
+    box-shadow: 0 0 0 3px rgba(0,229,168,0.25) !important;
+    background-color: #0b0f19 !important;
+}
+
+/* Send button */
+.chat-container button,
+.chat-container .btn {
+    background: linear-gradient(135deg, #00e5a8 0%, #00b386 100%) !important;
+    color: #0b0f19 !important;
+    border: none !important;
+    border-radius: 50px !important;
+    padding: 10px 22px !important;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+/* Send button hover */
+.chat-container button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,229,168,0.35);
+}
+/* Container for alignment */
+.d-flex.align-items-center {
     display: flex;
     align-items: center;
 }
 
-.nav-profile-img {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    margin-right: 5px;
+/* Space between button and price */
+.mr-3 {
+    margin-right: 1.2rem !important;
 }
 
-.nav-username {
-    font-size: 0.9rem;
+/* The new price style */
+.price-next-to-button {
+    /* Font Styling */
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #1a1a1b; /* Deep dark grey/black for clarity */
+    
+    /* The "Pill" Container */
+    background-color: #f1f3f5; /* Very light grey to make it stand out from white/dark backgrounds */
+    padding: 4px 12px;
+    border-radius: 50px; /* Perfect pill shape */
+    border: 1px solid #dee2e6; /* Subtle border to define the shape */
+    
+    /* Layout */
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Tiny shadow for depth */
 }
 
-/* Add this if main content is getting hidden behind navbar */
-main {
-    margin-top: 60px;
+/* Optional: If you want the price to match the "Buy Now" green subtly */
+.price-next-to-button {
+    color: #218838; 
+    background-color: #e6f4ea;
+    border-color: #c3e6cb;
 }
 
-
-
-/* CART
-/* Marketplace Styling */
-
-/* Make the Add to Cart button pop */
-.btn-primary {
-    background-color: #f0c14b; /* "Amazon-style" Yellow */
-    border-color: #a88734 #9c7e31 #846a29;
-    color: #111;
-}
-
-.btn-primary:hover {
-    background-color: #e9b330;
-    color: #000;
-}
-
-/* Cart Item Cards */
-.card {
-    transition: transform 0.2s ease-in-out;
-    border: 1px solid #ddd;
-}
-
-.card:hover {
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-/* Purchase section styling */
-.purchase-section h3 {
-    font-weight: 700;
-    color: #B12704; /* Classic price red */
-}
-
-/* Small cart badge (if you add one to your navbar later) */
-/* Marketplace Styling */
-
-/* Make the Add to Cart button pop */
-.btn-primary {
-    background-color: #f0c14b; /* "Amazon-style" Yellow */
-    border-color: #a88734 #9c7e31 #846a29;
-    color: #111;
-}
-
-.btn-primary:hover {
-    background-color: #e9b330;
-    color: #000;
-}
-
-/* Cart Item Cards */
-.card {
-    transition: transform 0.2s ease-in-out;
-    border: 1px solid #ddd;
-}
-
-.card:hover {
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-/* Purchase section styling */
-.purchase-section h3 {
-    font-weight: 700;
-    color: #B12704; /* Classic price red */
-}
-
-/* Small cart badge (if you add one to your navbar later) */
-.btn-primary {
-    background-color: #f0c14b; /* "Amazon-style" Yellow */
-    border-color: #a88734 #9c7e31 #846a29;
-    color: #111;
-}
-
-.btn-primary:hover {
-    background-color: #e9b330;
-    color: #000;
-}
-
-/* Cart Item Cards */
-.card {
-    transition: transform 0.2s ease-in-out;
-    border: 1px solid #ddd;
-}
-
-.card:hover {
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-/* Purchase section styling */
-.purchase-section h3 {
-    font-weight: 700;
-    color: #B12704; /* Classic price red */
-}
-
-/* Small cart badge (if you add one to your navbar later) */
-.cart-badge {
-    position: relative;
-    top: -10px;
-    right: 5px;
-    padding: 2px 6px;
-    border-radius: 50%;
-    background: red;
-    color: white;
-    font-size: 0.7rem;
-}
-
-/* Marketplace Styles */
-
-.price-tag {
-    color: #2ecc71;
-    font-weight: bold;
-    font-size: 28px;
-    margin-bottom: 15px;
-}
-
-/* Amazon-style "Add to Cart" button */
-.btn-primary {
-    background-color: #f0c14b !important;
-    border-color: #a88734 !important;
-    color: #111 !important;
-    font-weight: 500;
-}
-
-.btn-primary:hover {
-    background-color: #e9b330 !important;
-    border-color: #9c7e31 !important;
-}
-
-/* "Buy Now" Green Button */
-.btn-success {
-    background-color: #ffa41c !important; /* Orange-tint for urgency */
-    border-color: #ff8f00 !important;
-    color: #fff !important;
-}
-
-.btn-success:hover {
-    background-color: #f59600 !important;
-}
-
-/* Layout spacing */
-.gap-2 {
-    display: flex;
-    gap: 10px;
+/* Matching button heights */
+.mt-3 .btn {
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
 }

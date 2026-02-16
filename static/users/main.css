@@ -1,228 +1,194 @@
-/* Post Grid - 3 Columns Stretch */
-.post-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px; /* Responsive gap */
-    margin-top: 20px;
-}
-
-.grid-item {
-    position: relative;
-    aspect-ratio: 1 / 1; /* Keep it square */
-    background-color: #efefef;
-    overflow: hidden;
-}
-
-.grid-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Fill the square without stretching */
-    transition: filter 0.3s ease;
-}
-
-/* Instagram Hover Effect */
-.grid-overlay {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    color: white;
-}
-
-.grid-item:hover .grid-overlay {
-    opacity: 1;
-}
-
-.overlay-content {
-    font-weight: 600;
-    font-size: 1.1rem;
-}
-
-.no-image-placeholder {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #fafafa;
-    color: #8e8e8e;
-    border: 1px solid #dbdbdb;
-    text-align: center;
-    padding: 10px;
-}
-
-/* Pagination Styling */
-.pagination-container .btn {
-    border-radius: 4px;
-    margin: 0 2px;
-}
-/* main.css */
-
-/* PAGE CONTAINER */
+/* --- GLOBAL PROFILE DARK MODE --- */
 .profile-page-container {
     max-width: 900px;
     margin: 3rem auto;
     padding: 1rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #333;
+    color: #e6f1ff;
+    background-color: #0b0f19; /* optional if you want full dark bg */
 }
 
-/* HEADER GRID */
+/* --- HEADER GRID --- */
 .profile-header-grid {
     display: grid;
     grid-template-columns: 150px 1fr;
     gap: 2rem;
     align-items: center;
     padding-bottom: 2rem;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
-/* PROFILE IMAGE */
+/* --- PROFILE IMAGE --- */
 .image-column .profile-pic {
     width: 150px;
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid #ffd700; /* subtle gold outline */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border: 3px solid #00e5a8;
+    box-shadow: 0 4px 20px rgba(0,229,168,0.3);
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .image-column .profile-pic:hover {
     transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
 
-/* USER INFO COLUMN */
-.info-column {
-    display: flex;
-    flex-direction: column;
-}
-
-/* HEADER ACTIONS */
-.header-actions {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
+/* --- USER INFO --- */
 .username-display {
     font-size: 1.8rem;
     font-weight: 700;
 }
 
-.button-group .btn-ig-secondary {
-    background-color: #fafafa;
-    border: 1px solid #ccc;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.2s ease-in-out;
-}
-
-.button-group .btn-ig-secondary:hover {
-    background-color: #ffd700;
-    color: #fff;
-    border-color: #ffd700;
-}
-
-/* VERIFIED BADGE */
-.badge-verified {
-    background-color: #1da1f2;
-    color: white;
-    padding: 0.2rem 0.6rem;
-    font-size: 0.75rem;
-    border-radius: 12px;
-}
-
-/* STATS ROW */
+/* --- STATS --- */
 .stats-row {
     display: flex;
     gap: 2rem;
     margin-top: 0.5rem;
 }
 
-.stat-item {
-    text-align: center;
-}
-
 .stat-value {
-    display: block;
     font-weight: 700;
     font-size: 1.2rem;
 }
 
 .stat-label {
     font-size: 0.85rem;
-    color: #666;
+    color: #9ca3af;
 }
 
-/* BIO SECTION */
-.user-bio p {
-    margin: 0.2rem 0;
+/* --- POST GRID --- */
+.post-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 20px;
 }
 
-.user-bio .fw-bold {
-    font-size: 1rem;
-}
-
-.user-bio .text-secondary {
-    font-size: 0.85rem;
-}
-
-/* EDIT PROFILE SECTION */
-.settings-wrapper {
-    margin-top: 2rem;
-    animation: fadeIn 0.5s ease forwards;
-}
-
-.settings-card {
-    background-color: #fff;
+.grid-item {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background-color: #1f2937;
     border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    padding: 2rem;
-    transition: all 0.3s ease;
+    overflow: hidden;
 }
 
-.settings-card:hover {
-    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-/* CUSTOM FILE UPLOAD */
-.custom-file-upload {
-    background-color: #f0f0f0;
-    padding: 0.6rem 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    display: inline-block;
-    transition: all 0.2s ease;
-}
-
-.custom-file-upload:hover {
-    background-color: #ffd700;
+/* --- OVERLAY --- */
+.grid-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 229, 168, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
     color: #fff;
 }
 
-/* MODERN BUTTONS */
+.grid-item:hover .grid-overlay {
+    opacity: 1;
+}
+
+/* --- SETTINGS CARD --- */
+.settings-card {
+    background-color: #1f2937 !important;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    color: #e6f1ff !important;
+}
+
+/* --- FORM ELEMENTS --- */
+.settings-card label {
+    color: #9ca3af !important;
+    font-weight: 500;
+}
+
+.settings-card input,
+.settings-card textarea,
+.settings-card select {
+    background-color: #111827 !important;
+    border: 1px solid rgba(0,229,168,0.2) !important;
+    color: #e6f1ff !important;
+    border-radius: 10px;
+    padding: 0.5rem 0.75rem;
+    width: 100%;
+    font-size: 0.95rem;
+}
+
+.settings-card input::placeholder,
+.settings-card textarea::placeholder {
+    color: #6b7280 !important;
+}
+
+.settings-card input:focus,
+.settings-card textarea:focus,
+.settings-card select:focus {
+    outline: none !important;
+    border-color: #00e5a8 !important;
+    box-shadow: 0 0 0 3px rgba(0,229,168,0.25) !important;
+}
+
+/* File upload */
+.custom-file-upload {
+    background-color: #111827;
+    color: #e6f1ff;
+    border: 1px solid rgba(0,229,168,0.2);
+    padding: 0.4rem 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* Phone Input (intl-tel-input) Dark Theme */
+.iti {
+    width: 100% !important;
+}
+
+.iti input {
+    background-color: #111827 !important;
+    color: #e6f1ff !important;
+    border: 1px solid rgba(0,229,168,0.2);
+    border-radius: 10px;
+    padding-left: 50px; /* leave space for flag */
+}
+
+.iti__flag-container:hover {
+    cursor: pointer;
+}
+
+.iti__country-list {
+    background-color: #1f2937 !important;
+    color: #e6f1ff !important;
+    border-radius: 8px !important;
+    border: 1px solid #00e5a8 !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    z-index: 1000;
+}
+
+.iti__country-name, .iti__dial-code {
+    color: #e6f1ff !important;
+}
+
+/* --- BUTTONS --- */
 .btn-modern-save {
-    background-color: #ffd700;
+    background-color: #00e5a8;
     border: none;
     padding: 0.6rem 1.2rem;
-    border-radius: 10px;
+    border-radius: 50px;
     font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    color: #333;
+    color: #0b0f19;
+    transition: background 0.2s;
 }
 
 .btn-modern-save:hover {
-    background-color: #e6c200;
-    color: #fff;
+    background-color: #00c896;
 }
 
 .btn-modern-logout {
@@ -230,35 +196,49 @@
     color: #fff;
     border: none;
     padding: 0.5rem 1rem;
-    border-radius: 10px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
+    border-radius: 50px;
+    transition: background 0.2s;
 }
 
 .btn-modern-logout:hover {
-    background-color: #d9363e;
+    background-color: #e04344;
 }
 
-/* FADE IN ANIMATION */
+/* --- BADGES --- */
+.badge-verified {
+    background-color: #00e5a8;
+    color: #0b0f19;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+}
+
+/* --- ANIMATIONS --- */
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
 @keyframes fadeIn {
-    from {opacity: 0; transform: translateY(-10px);}
-    to {opacity: 1; transform: translateY(0);}
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    .profile-header-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 1rem;
-    }
 
-    .stats-row {
-        justify-content: center;
-    }
+/* --- EDIT PROFILE / VIEW POSTS BUTTONS --- */
+.header-actions .btn-ig-secondary {
+    background-color: #1f2937;   /* dark card color */
+    color: #e6f1ff;              /* light text */
+    border: 1px solid rgba(0,229,168,0.3); /* subtle green border */
+    padding: 0.4rem 0.8rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
 
-    .header-actions {
-        justify-content: center;
-    }
+.header-actions .btn-ig-secondary:hover {
+    background-color: #00e5a8;   /* bright green hover */
+    color: #0b0f19;              /* dark text on hover */
+    border-color: #00e5a8;
 }

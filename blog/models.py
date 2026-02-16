@@ -20,7 +20,7 @@ class Post(models.Model):
     
 
 
-# ADD THIS: Order model
+
 class Order(models.Model):
     PAYMENT_CHOICES = [
         ('credit_card', 'Credit Card'),
@@ -50,7 +50,7 @@ class Order(models.Model):
     class Meta:
         ordering = ['-created_at']
 
-# Add this to your models.py
+
 class CartItem(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
